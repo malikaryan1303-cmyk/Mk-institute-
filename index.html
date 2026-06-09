@@ -1,0 +1,1579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>MK GROUP OF INSTITUTIONS | OFFICIAL SYSTEM</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        /* MASTER STYLING ENGINE - SECTION 1: GLOBAL VARIABLES
+           ====================================================
+        */
+        :root {
+            --p: #2ECC71;           
+            --orange: #FF8C00;      
+            --bg: #FFFFFF;          
+            --card: #F9FBFC;        
+            --dark: #0F172A;        
+            --text-main: #1E293B; 
+            --text-sub: #64748B;
+            --header-h: 160px;
+            --radius: 22px;
+            --shadow: 0 15px 35px rgba(0,0,0,0.08);
+            --transition-main: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* MASTER STYLING ENGINE - SECTION 2: THEME OVERRIDES
+           ==================================================
+        */
+        body.dark-mode { --bg: #000; --card: #111; --text-main: #fff; --text-sub: #94A3B8; --dark: #000; }
+        body.gold-mode { --p: #D4AF37; --orange: #B8860B; }
+        body.emerald-mode { --p: #2ECC71; --dark: #064e3b; }
+
+        /* MASTER STYLING ENGINE - SECTION 3: BASE ARCHITECTURE
+           ====================================================
+        */
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+            font-family: 'Poppins', sans-serif; 
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        body { 
+            background-color: var(--bg); 
+            color: var(--text-main); 
+            padding-top: calc(var(--header-h) + 15px); 
+            transition: var(--transition-main);
+            overflow-x: hidden;
+            width: 100%;
+            min-height: 100vh;
+        }
+
+        /* MASTER STYLING ENGINE - SECTION 4: HEADER & NAV
+           ===============================================
+        */
+        header {
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: var(--header-h);
+            background: var(--dark); 
+            z-index: 10000; 
+            display: flex; 
+            flex-direction: column;
+            border-bottom: 4px solid var(--p);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+
+        .brand-zone { 
+            flex: 1; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+        }
+
+        .brand-zone h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(14px, 5.5vw, 24px);
+            color: var(--p); 
+            text-transform: uppercase; 
+            font-weight: 900; 
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px rgba(46, 204, 113, 0.3);
+        }
+
+        nav.nav-grid {
+            height: 85px; 
+            display: grid; 
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(2, 1fr); 
+            background: #000;
+        }
+
+        .n-btn {
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center;
+            color: #666; 
+            border: none; 
+            background: none; 
+            cursor: pointer; 
+            transition: 0.3s;
+        }
+
+        .n-btn i { font-size: 18px; margin-bottom: 2px; color: var(--p); }
+        .n-btn span { font-size: 8px; font-weight: 800; text-transform: uppercase; }
+        .n-btn.active { background: rgba(46, 204, 113, 0.15); color: #fff; }
+        .n-btn.active i { transform: scale(1.2); }
+
+        /* MASTER STYLING ENGINE - SECTION 5: CONTAINER & VIEWS
+           ====================================================
+        */
+        .container { 
+            padding: 15px; 
+            max-width: 800px; 
+            margin: 0 auto; 
+            padding-bottom: 120px; 
+        }
+
+        .view { display: none; }
+        .view.active { 
+            display: block; 
+            animation: slideUp 0.6s cubic-bezier(0.23, 1, 0.32, 1); 
+        }
+
+        @keyframes slideUp { 
+            from { opacity: 0; transform: translateY(40px); } 
+            to { opacity: 1; transform: translateY(0); } 
+        }
+
+        /* MASTER STYLING ENGINE - SECTION 6: COMPONENTS (CARDS)
+           =====================================================
+        */
+        .mk-card {
+            background: var(--card); 
+            border-radius: var(--radius); 
+            padding: 25px;
+            margin-bottom: 25px; 
+            box-shadow: var(--shadow); 
+            border: 1px solid rgba(0,0,0,0.03);
+            position: relative; 
+            overflow: hidden;
+            transition: 0.3s ease;
+        }
+
+        .mk-card:active { transform: scale(0.98); }
+
+        .mk-card h3 { 
+            font-size: 18px; 
+            font-weight: 800; 
+            margin-bottom: 18px; 
+            color: var(--p); 
+            text-transform: uppercase; 
+            display: flex; 
+            align-items: center; 
+            gap: 10px; 
+        }
+
+        .hero-box {
+            width: 100%; 
+            height: 200px; 
+            border-radius: var(--radius);
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(15,23,42,0.9)), 
+                        url('https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=1000');
+            background-size: cover; 
+            background-position: center;
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center;
+            color: #fff; 
+            margin-bottom: 25px; 
+            border: 2px solid var(--p);
+        }
+
+        /* MASTER STYLING ENGINE - SECTION 7: DATA PRESENTATION
+           ====================================================
+        */
+        .res-strip {
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center;
+            background: var(--bg); 
+            padding: 18px; 
+            border-radius: 15px; 
+            margin-bottom: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.04); 
+            border-right: 4px solid var(--p);
+        }
+
+        .res-strip .name { 
+            color: var(--orange); 
+            font-weight: 900; 
+            font-size: 16px; 
+            text-transform: uppercase; 
+        }
+
+        /* MASTER STYLING ENGINE - SECTION 8: FORMS & BUTTONS
+           ==================================================
+        */
+        .mk-input { 
+            width: 100%; 
+            padding: 18px; 
+            background: #fff; 
+            border: 2px solid #F1F5F9; 
+            border-radius: 16px; 
+            margin-bottom: 15px; 
+            font-weight: 700; 
+            color: #333; 
+            transition: 0.3s;
+        }
+
+        body.dark-mode .mk-input { background: #000; border-color: #222; color: #fff; }
+        
+        .big-btn { 
+            width: 100%; 
+            padding: 20px; 
+            background: var(--p); 
+            color: #000; 
+            border: none; 
+            border-radius: 16px; 
+            font-weight: 900; 
+            text-transform: uppercase; 
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(46, 204, 113, 0.2);
+            transition: 0.2s;
+        }
+
+        /* ADMIN EXTRAS */
+        .del-badge {
+            background: #ff4757; color: white; padding: 4px 8px; border-radius: 6px;
+            font-size: 9px; cursor: pointer; border: none; font-weight: 900;
+            display: none; margin-left: 10px;
+        }
+        body.admin-active .del-badge { display: inline-block; }
+
+        footer { text-align: center; padding: 60px 20px; background: #000; color: #444; font-size: 10px; }
+        footer b { color: var(--p); font-size: 14px; }
+    </style>
+</head>
+<body id="master_body">
+
+<header>
+    <div class="brand-zone">
+        <h1>MK GROUP OF INSTITUTIONS</h1>
+    </div>
+    <nav class="nav-grid">
+        <button class="n-btn active" onclick="nav('home', this)"><i class="fa fa-home"></i><span>Home</span></button>
+        <button class="n-btn" onclick="nav('admission', this)"><i class="fa fa-user-plus"></i><span>Apply</span></button>
+        <button class="n-btn" onclick="nav('academics', this)"><i class="fa fa-graduation-cap"></i><span>Acad/Fees</span></button>
+        <button class="n-btn" onclick="nav('routine', this)"><i class="fa fa-history"></i><span>Routine</span></button>
+        <button class="n-btn" onclick="nav('campus', this)"><i class="fa fa-camera-retro"></i><span>Campus</span></button>
+        <button class="n-btn" onclick="nav('notice_view', this)"><i class="fa fa-broadcast-tower"></i><span>Notice</span></button>
+        <button class="n-btn" onclick="nav('portal', this)"><i class="fa fa-fingerprint"></i><span>Portal</span></button>
+        <button class="n-btn" onclick="nav('admin', this)"><i class="fa fa-key"></i><span>Admin</span></button>
+    </nav>
+</header>
+
+<main class="container">
+
+    <section id="home" class="view active">
+        <div class="hero-box">
+            <h2>Welcome to MK Classes</h2>
+            <p>AS KHRAB COLLEGE KASNI JHAJJAR</p>
+        </div>
+        <div class="mk-card">
+            <h3><i class="fa fa-award" style="color:var(--orange)"></i> Hall of Fame 2026</h3>
+            <div id="res_wall"></div>
+        </div>
+    </section>
+
+    <section id="admission" class="view">
+        <div class="mk-card">
+            <h3>Online Registration</h3>
+            <input type="text" id="wa_name" class="mk-input" placeholder="Cadet's Name">
+            <input type="number" id="wa_phone" class="mk-input" placeholder="WhatsApp Number">
+            <button class="big-btn" onclick="submitToWhatsApp()">SUBMIT APPLICATION</button>
+        </div>
+    </section>
+
+    <section id="academics" class="view">
+        <div class="mk-card">
+            <h3><i class="fa fa-book-reader"></i> Academic Excellence</h3>
+            <div style="font-size:13px; font-weight:600; line-height:2.2; color:var(--text-main);">
+                <p style="margin-bottom:12px; display:flex; align-items:flex-start; gap:10px;">
+                    <i class="fa fa-check-circle" style="color:var(--p); margin-top:5px;"></i>
+                    <span><b>Advanced Sainik Curriculum:</b> Specially designed OMR-based training for Sainik School, RMS, and RIMC entrance.</span>
+                </p>
+                <div style="height:1px; background:rgba(0,0,0,0.05); margin:10px 0;"></div>
+                <p style="margin-bottom:12px; display:flex; align-items:flex-start; gap:10px;">
+                    <i class="fa fa-check-circle" style="color:var(--p); margin-top:5px;"></i>
+                    <span><b>Daily Mock Testing:</b> Computerized result analysis for every student to track daily growth and weak areas.</span>
+                </p>
+                <div style="height:1px; background:rgba(0,0,0,0.05); margin:10px 0;"></div>
+                <p style="margin-bottom:12px; display:flex; align-items:flex-start; gap:10px;">
+                    <i class="fa fa-check-circle" style="color:var(--p); margin-top:5px;"></i>
+                    <span><b>Doubt Classes:</b> Post-lecture dedicated 2-hour doubt clearance session with subject experts every evening.</span>
+                </p>
+                <div style="height:1px; background:rgba(0,0,0,0.05); margin:10px 0;"></div>
+                <p style="margin-bottom:12px; display:flex; align-items:flex-start; gap:10px;">
+                    <i class="fa fa-check-circle" style="color:var(--p); margin-top:5px;"></i>
+                    <span><b>Digital Library:</b> Access to thousands of Sainik School previous year papers and military prep journals.</span>
+                </p>
+            </div>
+        </div>
+
+        <div class="mk-card">
+            <h3><i class="fa fa-file-invoice-dollar"></i> Yearly Fee Ledger 2026-27</h3>
+            <div style="background:rgba(0,0,0,0.02); border-radius:15px; padding:10px;">
+                <div style="display:flex; justify-content:space-between; padding:18px; border-bottom:1px dashed #ddd;">
+                    <span style="font-weight:700;">Junior Wing (3rd-5th)</span>
+                    <b style="color:var(--p); font-size:16px;">₹1,40,000/-</b>
+                </div>
+                <div style="display:flex; justify-content:space-between; padding:18px; border-bottom:1px dashed #ddd;">
+                    <span style="font-weight:700;">Middle Wing (6th-8th)</span>
+                    <b style="color:var(--p); font-size:16px;">₹1,55,000/-</b>
+                </div>
+                <div style="display:flex; justify-content:space-between; padding:18px; border-bottom:1px dashed #ddd;">
+                    <span style="font-weight:700;">High Wing (9th-10th)</span>
+                    <b style="color:var(--p); font-size:16px;">₹1,65,000/-</b>
+                </div>
+                <div style="display:flex; justify-content:space-between; padding:18px;">
+                    <span style="font-weight:700;">Senior Wing (11th-12th)</span>
+                    <b style="color:var(--p); font-size:16px;">₹1,75,000/-</b>
+                </div>
+            </div>
+            
+            <div style="margin-top:20px; padding:15px; border-radius:12px; background:var(--dark); color:#fff; font-size:11px;">
+                <p><i class="fa fa-info-circle" style="color:var(--p)"></i> <b>Note:</b> Fees includes Academic Tuition, Hostel Accommodation, Mess Food (4 meals/day), and Ground Drill Kits.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="routine" class="view">
+        <div class="mk-card">
+            <h3>Military Daily Routine</h3>
+            <div id="routine_container">
+                </div>
+        </div>
+    </section>
+
+    <section id="campus" class="view">
+        <div class="mk-card">
+            <h3>Campus Media</h3>
+            <div id="g_wall" style="display:grid; grid-template-columns:1fr 1fr; gap:12px;"></div>
+        </div>
+    </section>
+
+    <section id="notice_view" class="view">
+        <div class="mk-card">
+            <h3>Digital Notice Board</h3>
+            <div id="not_wall"></div>
+        </div>
+    </section>
+
+    <section id="portal" class="view">
+        <div class="mk-card" id="p_gate">
+            <h3>Cadet Dashboard</h3>
+            <input id="ui" class="mk-input" placeholder="Cadet ID (MK-XXX)">
+            <button class="big-btn" onclick="portalAuth()">SECURE LOGIN</button>
+        </div>
+        <div id="p_dash" style="display:none;"></div>
+    </section>
+
+    <section id="admin" class="view">
+        <div class="mk-card" id="a_gate">
+            <h3>System Authorization</h3>
+            <input type="password" id="pin" class="mk-input" style="text-align:center; letter-spacing:10px;" placeholder="••••">
+            <button class="big-btn" onclick="adminAuth()">UNLOCK SYSTEM</button>
+        </div>
+        
+        <div id="a_console" style="display:none;">
+            <div class="mk-card">
+                <h3>1. Post Cloud Notice</h3>
+                <input id="in_msg" class="mk-input" placeholder="Message">
+                <button class="big-btn" onclick="db_addNotice()">PUBLISH NOW</button>
+            </div>
+
+            <div class="mk-card">
+                <h3>2. Result Wall Update</h3>
+                <input id="ih_name" class="mk-input" placeholder="Cadet Name">
+                <input id="ih_rank" class="mk-input" placeholder="Allotted School">
+                <button class="big-btn" onclick="db_addHall()">ADD TO WALL</button>
+            </div>
+
+            <div class="mk-card">
+                <h3>3. Sync Cadet Profile</h3>
+                <input id="is_id" class="mk-input" placeholder="MK-ID">
+                <input id="is_name" class="mk-input" placeholder="Name">
+                <input id="is_class" class="mk-input" placeholder="Class">
+                <input id="is_paid" class="mk-input" placeholder="Paid Amount">
+                <input id="is_total" class="mk-input" placeholder="Total Fees">
+                <button class="big-btn" onclick="db_syncStudent()">SYNC CLOUD</button>
+            </div>
+
+            <div class="mk-card">
+                <h3>4. Campus Image Cloud</h3>
+                <input id="ig_url" class="mk-input" placeholder="URL">
+                <button class="big-btn" onclick="db_addGallery()">UPLOAD PHOTO</button>
+            </div>
+
+            <div class="mk-card">
+                <h3>5. Global System Theme</h3>
+                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px;">
+                    <button class="big-btn" style="background:#000; color:#fff;" onclick="db_setTheme('DARK')">DARK</button>
+                    <button class="big-btn" style="background:#D4AF37;" onclick="db_setTheme('GOLD')">GOLD</button>
+                </div>
+            </div>
+
+            <button class="big-btn" style="background:red; color:#fff; margin-top:20px;" onclick="location.reload()">TERMINATE ADMIN</button>
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    <b>MK GROUP OF INSTITUTIONS</b><br>
+    Defence Preparatory Academy | Kasni Jhajjar | 2026<br>
+    CLOUD INFRASTRUCTURE v14.0 SECURED
+</footer>
+
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+    import { getDatabase, ref, set, push, onValue, remove } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
+
+    /* FIREBASE CONFIGURATION 
+       ----------------------
+    */
+    const firebaseConfig = {
+        apiKey: "AIzaSyAUbxlce-AurocYx2qQ9DW_wwFI4VTHCl0",
+        databaseURL: "https://mk-group-c27c9-default-rtdb.asia-southeast1.firebasedatabase.app/",
+        projectId: "mk-group-c27c9",
+        appId: "1:789213760789:web:e54db27b65b8b488ba2d1c"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+
+    /* POWER FUNCTIONS - SECTION 1: CLOUD WRITE
+       ----------------------------------------
+    */
+    window.db_addNotice = () => {
+        const msg = document.getElementById('in_msg').value;
+        if(msg) {
+            push(ref(db, 'notices'), { msg: msg, date: new Date().toLocaleDateString() });
+            document.getElementById('in_msg').value = "";
+            alert("SUCCESS: Notice Published to Cloud.");
+        }
+    };
+
+    window.db_delNotice = (key) => { 
+        if(confirm("CRITICAL: Delete notice from database?")) {
+            remove(ref(db, 'notices/' + key));
+        }
+    };
+
+    window.db_addHall = () => {
+        const n = document.getElementById('ih_name').value;
+        const r = document.getElementById('ih_rank').value;
+        if(n && r) {
+            push(ref(db, 'hall'), { name: n, rank: r });
+            document.getElementById('ih_name').value = "";
+            document.getElementById('ih_rank').value = "";
+            alert("SUCCESS: Cadet Record Added.");
+        }
+    };
+
+    window.db_delHall = (key) => {
+        if(confirm("Delete Cadet Result?")) remove(ref(db, 'hall/' + key));
+    };
+
+    window.db_syncStudent = () => {
+        const id = document.getElementById('is_id').value.toUpperCase().trim();
+        const nm = document.getElementById('is_name').value;
+        const cl = document.getElementById('is_class').value;
+        const pd = document.getElementById('is_paid').value;
+        const tt = document.getElementById('is_total').value;
+        if(id && nm) {
+            set(ref(db, 'students/' + id), { id: id, name: nm, class: cl, paid: pd, total: tt });
+            alert("DATABASE SYNC COMPLETE: Record Saved.");
+        }
+    };
+
+    window.db_addGallery = () => {
+        const url = document.getElementById('ig_url').value;
+        if(url) {
+            push(ref(db, 'gallery'), { url: url });
+            document.getElementById('ig_url').value = "";
+            alert("PHOTO UPLOADED.");
+        }
+    };
+
+    window.db_delPhoto = (key) => {
+        if(confirm("Delete photo?")) remove(ref(db, 'gallery/' + key));
+    };
+
+    window.db_setTheme = (m) => {
+        set(ref(db, 'theme'), { mode: m });
+    };
+
+    /* POWER FUNCTIONS - SECTION 2: REALTIME SYNC
+       ------------------------------------------
+    */
+    
+    // Hall of Fame Observer
+    onValue(ref(db, 'hall'), (snapshot) => {
+        const data = snapshot.val();
+        const wall = document.getElementById('res_wall');
+        let htmlContent = "";
+        if(data) {
+            Object.keys(data).forEach(key => {
+                const item = data[key];
+                htmlContent += `
+                    <div class="res-strip">
+                        <b class="name">${item.name}</b>
+                        <span style="font-size:12px; font-weight:800; opacity:0.8;">
+                            ${item.rank} 
+                            <button class="del-badge" onclick="db_delHall('${key}')">REMOVE</button>
+                        </span>
+                    </div>
+                `;
+            });
+            wall.innerHTML = htmlContent;
+        } else {
+            wall.innerHTML = "<p style='text-align:center; padding:20px; font-weight:bold; opacity:0.3;'>NO RECORDS FOUND</p>";
+        }
+    });
+
+    // Notice Board Observer
+    onValue(ref(db, 'notices'), (snapshot) => {
+        const data = snapshot.val();
+        const wall = document.getElementById('not_wall');
+        let htmlContent = "";
+        if(data) {
+            Object.keys(data).reverse().forEach(key => {
+                const item = data[key];
+                htmlContent += `
+                    <div style="padding:15px; border-left:4px solid var(--p); background:rgba(0,0,0,0.02); margin-bottom:12px; border-radius:0 12px 12px 0;">
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:5px;">
+                            <small style="color:var(--p); font-weight:800;">${item.date}</small>
+                            <button class="del-badge" onclick="db_delNotice('${key}')" style="margin:0;">DELETE</button>
+                        </div>
+                        <p style="font-weight:700; font-size:14px; color:var(--text-main); line-height:1.5;">${item.msg}</p>
+                    </div>
+                `;
+            });
+            wall.innerHTML = htmlContent;
+        } else {
+            wall.innerHTML = "<p style='text-align:center; padding:20px; font-weight:bold; opacity:0.3;'>BOARD EMPTY</p>";
+        }
+    });
+
+    // Gallery Cloud Observer
+    onValue(ref(db, 'gallery'), (snapshot) => {
+        const data = snapshot.val();
+        const wall = document.getElementById('g_wall');
+        let htmlContent = "";
+        if(data) {
+            Object.keys(data).forEach(key => {
+                htmlContent += `
+                    <div style="position:relative; overflow:hidden; border-radius:15px; height:140px; border:1px solid rgba(0,0,0,0.05);">
+                        <img src="${data[key].url}" style="width:100%; height:100%; object-fit:cover;">
+                        <button class="del-badge" style="position:absolute; top:8px; right:8px; margin:0;" onclick="db_delPhoto('${key}')">X</button>
+                    </div>
+                `;
+            });
+            wall.innerHTML = htmlContent;
+        } else {
+            wall.innerHTML = "<p style='grid-column: span 2; text-align:center; opacity:0.2;'>NO PHOTOS</p>";
+        }
+    });
+
+    // Global Theme Observer
+    onValue(ref(db, 'theme'), (snapshot) => {
+        const data = snapshot.val();
+        const body = document.body;
+        if(data && data.mode) {
+            body.classList.remove('dark-mode', 'gold-mode', 'emerald-mode');
+            if(data.mode !== 'LIGHT') {
+                body.classList.add(data.mode.toLowerCase() + '-mode');
+            }
+        }
+    });
+
+    /* POWER FUNCTIONS - SECTION 3: PORTAL LOGIC
+       -----------------------------------------
+    */
+    window.portalAuth = () => {
+        const id = document.getElementById('ui').value.toUpperCase().trim();
+        if(!id) { alert("Enter Cadet ID"); return; }
+        
+        onValue(ref(db, 'students/' + id), (snapshot) => {
+            const d = snapshot.val();
+            if(d) {
+                document.getElementById('p_gate').style.display = 'none';
+                const dash = document.getElementById('p_dash');
+                dash.style.display = 'block';
+                const bal = parseInt(d.total) - parseInt(d.paid);
+                
+                dash.innerHTML = `
+                    <div class="mk-card" style="border-top: 6px solid var(--p); border-radius:25px;">
+                        <div style="text-align:center; margin-bottom:20px;">
+                            <div style="width:60px; height:60px; background:var(--p); color:#000; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; font-size:24px; font-weight:900; margin-bottom:10px;">
+                                ${d.name.charAt(0)}
+                            </div>
+                            <h2 style="color:var(--text-main); font-weight:800; text-transform:uppercase;">${d.name}</h2>
+                            <p style="font-size:10px; opacity:0.5; font-weight:bold;">CADET ID: ${d.id}</p>
+                        </div>
+                        
+                        <div style="background:rgba(0,0,0,0.04); padding:20px; border-radius:18px; line-height:2.4; border:1px solid rgba(0,0,0,0.05);">
+                            <div style="display:flex; justify-content:space-between; border-bottom:1px solid #eee;">
+                                <span style="font-weight:600; opacity:0.7;">Class Wing:</span>
+                                <b style="color:var(--text-main);">${d.class}</b>
+                            </div>
+                            <div style="display:flex; justify-content:space-between; border-bottom:1px solid #eee;">
+                                <span style="font-weight:600; opacity:0.7;">Total Yearly Fees:</span>
+                                <b style="color:var(--text-main);">₹${d.total}</b>
+                            </div>
+                            <div style="display:flex; justify-content:space-between; border-bottom:1px solid #eee;">
+                                <span style="font-weight:600; opacity:0.7;">Fees Deposited:</span>
+                                <b style="color:var(--p);">₹${d.paid}</b>
+                            </div>
+                            <div style="display:flex; justify-content:space-between; margin-top:5px;">
+                                <span style="font-weight:600; color:red;">Pending Balance:</span>
+                                <b style="color:red; font-size:18px;">₹${bal}</b>
+                            </div>
+                        </div>
+                        
+                        <button class="big-btn" style="margin-top:20px; background:#f1f5f9; color:#000; box-shadow:none;" onclick="location.reload()">TERMINATE SESSION</button>
+                    </div>
+                `;
+            } else {
+                alert("ERROR: ID Not Found in Cloud Records.");
+            }
+        }, { onlyOnce: true });
+    };
+
+</script>
+
+<script>
+    /* GLOBAL SYSTEM SCRIPTING - SECTION 1: NAVIGATION
+       ===============================================
+    */
+    function nav(id, btn) {
+        document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
+        document.querySelectorAll('.n-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        
+        // Load dynamic components if needed
+        if(id === 'routine') loadRoutine();
+    }
+
+    /* GLOBAL SYSTEM SCRIPTING - SECTION 2: ADMISSION
+       ===============================================
+    */
+    function submitToWhatsApp() {
+        const n = document.getElementById('wa_name').value;
+        const p = document.getElementById('wa_phone').value;
+        if(!n || !p) { alert("Please complete form details."); return; }
+        const msg = `*MK GROUP NEW ADMISSION ENQUIRY*%0A---------------------------%0A*Name:* ${n}%0A*Contact:* ${p}%0A---------------------------`;
+        window.open(`https://wa.me/918810285636?text=${msg}`);
+    }
+
+    /* GLOBAL SYSTEM SCRIPTING - SECTION 3: ADMIN AUTH
+       ===============================================
+    */
+    function adminAuth() {
+        const pin = document.getElementById('pin').value;
+        if(pin === "Mkclasses@1303") {
+            document.getElementById('a_gate').style.display = 'none';
+            document.getElementById('a_console').style.display = 'block';
+            document.body.classList.add('admin-active');
+            alert("ADMIN ACCESS GRANTED");
+        } else {
+            alert("SECURITY ALERT: UNAUTHORIZED ACCESS ATTEMPT");
+        }
+    }
+
+    /* GLOBAL SYSTEM SCRIPTING - SECTION 4: DYNAMIC ROUTINE
+       ====================================================
+    */
+    function loadRoutine() {
+        const routineData = [
+            { t: "05:00 AM", act: "Wake Up Call & Morning Wash" },
+            { t: "05:30 AM", act: "Physical Training / Ground Drill" },
+            { t: "07:15 AM", act: "Personal Cleanliness / Bath" },
+            { t: "08:00 AM", act: "Breakfast (High Protein Mess)" },
+            { t: "08:45 AM", act: "Academy Morning Assembly" },
+            { t: "09:00 AM", act: "Academic Session I (Core Subject)" },
+            { t: "01:30 PM", act: "Lunch Break & Healthy Meal" },
+            { t: "02:15 PM", act: "Mandatory Rest Period" },
+            { t: "03:45 PM", act: "Academic Session II (Mock Test)" },
+            { t: "06:00 PM", act: "Evening Snacks & Tea" },
+            { t: "06:30 PM", act: "Evening Sports Drill" },
+            { t: "08:00 PM", act: "Dinner Time" },
+            { t: "09:00 PM", act: "Self Study & Doubt Clearance" },
+            { t: "10:30 PM", act: "Lights Out (Mandatory Rest)" }
+        ];
+
+        let html = '<table style="width:100%; border-collapse:separate; border-spacing:0 10px;">';
+        routineData.forEach(r => {
+            html += `
+                <tr style="background:var(--bg); box-shadow:0 4px 10px rgba(0,0,0,0.02);">
+                    <td style="padding:15px; color:var(--p); border-radius:12px 0 0 12px; border-left:4px solid var(--p); width:100px; font-weight:900; font-size:12px;">${r.t}</td>
+                    <td style="padding:15px; font-weight:700; font-size:13px; border-radius:0 12px 12px 0;">${r.act}</td>
+                </tr>
+            `;
+        });
+        html += '</table>';
+        document.getElementById('routine_container').innerHTML = html;
+    }
+
+    // Initialize System
+    window.onload = () => {
+        console.log("MK Cloud System v14.0 Initialized Successfully.");
+    };
+</script>
+<style>
+    /* 1. HEADER WITH TRANSPARENT CADET IMAGE */
+    header {
+        background: #000 !important;
+        overflow: hidden !important;
+        border-bottom: 5px solid var(--p) !important;
+    }
+    .brand-zone {
+        position: relative;
+        background-image: url('https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=1000&auto=format&fit=crop') !important;
+        background-size: cover !important;
+        background-position: center 30% !important;
+    }
+    .brand-zone::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; width: 100%; height: 100%;
+        background: rgba(0, 0, 0, 0.75); /* Dark transparency layer */
+        z-index: 1;
+    }
+    .brand-zone h1 {
+        position: relative;
+        z-index: 2;
+        text-shadow: 0 0 15px rgba(46, 204, 113, 0.8) !important;
+        letter-spacing: 3px !important;
+    }
+
+    /* 2. HOME PAGE SCROLLING ANNOUNCEMENT */
+    .ann-bar {
+        background: #000;
+        color: #fff;
+        padding: 12px;
+        margin-bottom: 20px;
+        border-radius: 12px;
+        display: none; /* Auto-shows when data exists */
+        align-items: center;
+        border: 1.5px solid var(--p);
+        box-shadow: 0 5px 15px rgba(46, 204, 113, 0.2);
+        overflow: hidden;
+    }
+    .ann-tag {
+        background: var(--p);
+        color: #000;
+        padding: 3px 10px;
+        border-radius: 5px;
+        font-weight: 900;
+        font-size: 10px;
+        margin-right: 12px;
+        white-space: nowrap;
+        z-index: 5;
+    }
+    #ann_text {
+        font-weight: 600;
+        font-size: 14px;
+        white-space: nowrap;
+        display: inline-block;
+        animation: marquee 12s linear infinite;
+    }
+    @keyframes marquee {
+        0% { transform: translateX(100%); }
+        100% { transform: translateX(-100%); }
+    }
+
+    /* 3. RAINBOW FEES SECTION STYLE */
+    #academics .mk-card:last-child { border: none !important; background: transparent !important; }
+    #academics div[style*="border-bottom"] {
+        border-radius: 12px !important;
+        border: none !important;
+        margin-bottom: 12px !important;
+        color: #fff !important;
+        padding: 20px !important;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    /* Row Colors (Junior to Senior) */
+    #academics div[style*="border-bottom"]:nth-of-type(1) { background: linear-gradient(90deg, #1e3c72, #2a5298) !important; }
+    #academics div[style*="border-bottom"]:nth-of-type(2) { background: linear-gradient(90deg, #6a11cb, #2575fc) !important; }
+    #academics div[style*="border-bottom"]:nth-of-type(3) { background: linear-gradient(90deg, #11998e, #38ef7d) !important; }
+    #academics div[style*="padding:18px"]:last-of-type { 
+        background: linear-gradient(90deg, #f12711, #f5af19) !important; 
+        border-radius: 12px !important; padding: 20px !important; color: #fff !important;
+    }
+    #academics b { color: #fff !important; font-size: 18px !important; }
+</style>
+
+<script type="module">
+    import { getDatabase, ref, set, onValue, remove } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
+    const db = getDatabase();
+
+    // --- ADMIN PANEL ENHANCEMENT ---
+    const adminConsole = document.getElementById('a_console');
+    if(adminConsole) {
+        const annPowerHTML = `
+            <div class="mk-card" style="border-top: 5px solid #FFD700;">
+                <h3><i class="fa fa-bullhorn"></i> 6. HOME ANNOUNCEMENT POWER</h3>
+                <input id="is_ann_msg" class="mk-input" placeholder="Type message for Home Page...">
+                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px;">
+                    <button class="big-btn" onclick="updateHomeAnn()">ACTIVATE</button>
+                    <button class="big-btn" style="background:#ff4757; color:#fff;" onclick="deleteHomeAnn()">OFF</button>
+                </div>
+            </div>
+        `;
+        adminConsole.insertAdjacentHTML('beforeend', annPowerHTML);
+    }
+
+    // --- DATA FUNCTIONS ---
+    window.updateHomeAnn = () => {
+        const msg = document.getElementById('is_ann_msg').value;
+        if(msg) {
+            set(ref(db, 'home_announcement'), { text: msg });
+            alert("Home Announcement Updated!");
+        }
+    };
+    window.deleteHomeAnn = () => {
+        if(confirm("Band karein?")) {
+            remove(ref(db, 'home_announcement'));
+            alert("Announcement Deleted.");
+        }
+    };
+
+    // --- HOME PAGE DISPLAY LOGIC ---
+    const homeView = document.getElementById('home');
+    const annContainer = document.createElement('div');
+    annContainer.id = "ann_bar_box";
+    annContainer.className = 'ann-bar';
+    annContainer.innerHTML = `<div class="ann-tag">UPDATE</div><div id="ann_text"></div>`;
+    homeView.insertBefore(annContainer, homeView.children[1]);
+
+    onValue(ref(db, 'home_announcement'), (snapshot) => {
+        const data = snapshot.val();
+        const bar = document.getElementById('ann_bar_box');
+        if(data && data.text) {
+            bar.style.display = 'flex';
+            document.getElementById('ann_text').innerText = data.text;
+        } else {
+            bar.style.display = 'none';
+        }
+    });
+</script>
+<style>
+    /* 1. Header Text ko ek line me lane ke liye */
+    .brand-zone h1 {
+        position: relative;
+        z-index: 2;
+        text-shadow: 0 0 10px rgba(46, 204, 113, 0.6) !important;
+        
+        /* Ek hi line me rakhne ka magic */
+        white-space: nowrap !important; 
+        font-size: clamp(16px, 4.5vw, 22px) !important; /* Screen ke hisab se adjust hoga */
+        
+        /* 4-Taraf Patli Boundary */
+        padding: 8px 15px !important;
+        border: 1.5px solid var(--p) !important; /* Patli Green Boundary */
+        border-radius: 8px !important; /* Halke curved corners */
+        background: rgba(0, 0, 0, 0.4) !important; /* Text ke peeche halka black taaki image ke upar saaf dikhe */
+        
+        display: inline-block !important;
+        letter-spacing: 1.5px !important;
+        text-transform: uppercase !important;
+    }
+
+    /* 2. Header ki positioning sahi rakhne ke liye */
+    .brand-zone {
+        padding: 10px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+
+    /* Pehle wala green underline remove karne ke liye (kyuki ab charo taraf border hai) */
+    .brand-zone h1::after {
+        display: none !important;
+    }
+</style>
+<style>
+    /* 1. HEADER IMPROVEMENTS */
+    .brand-zone {
+        background-image: url('https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=1000&auto=format&fit=crop') !important;
+        background-size: cover !important;
+        position: relative !important;
+    }
+    .brand-zone::before { content: ''; position: absolute; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); z-index:1; }
+    .brand-zone h1 {
+        position: relative; z-index: 2;
+        white-space: nowrap !important;
+        font-size: clamp(14px, 4.5vw, 20px) !important;
+        padding: 6px 12px !important;
+        border: 1.5px solid var(--p) !important;
+        border-radius: 8px !important;
+        background: rgba(0,0,0,0.5) !important;
+    }
+
+    /* 2. HOME ANNOUNCEMENT STRIP */
+    .ann-bar {
+        background: #000; color: #fff; padding: 12px; margin-bottom: 20px;
+        border-radius: 12px; display: none; align-items: center;
+        border: 1.5px solid var(--p); overflow: hidden;
+    }
+    #ann_text { font-weight: 600; font-size: 14px; white-space: nowrap; animation: marquee 12s linear infinite; }
+    @keyframes marquee { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+
+    /* 3. INFO CARDS IN NOTICE SECTION */
+    .info-box {
+        background: var(--card); border-radius: 15px; padding: 15px;
+        margin-bottom: 15px; border-left: 5px solid var(--p);
+        display: flex; align-items: center; gap: 15px; text-decoration: none; color: inherit;
+    }
+    .info-box i { font-size: 20px; color: var(--p); width: 30px; text-align: center; }
+    .info-box div b { display: block; font-size: 14px; color: var(--p); }
+    .info-box div p { font-size: 12px; font-weight: 600; }
+
+    /* 4. RAINBOW FEES */
+    #academics div[style*="border-bottom"] { border:none !important; border-radius:12px !important; margin-bottom:10px !important; padding:18px !important; color:#fff !important; }
+    #academics div[style*="border-bottom"]:nth-child(1) { background: linear-gradient(90deg, #1e3c72, #2a5298) !important; }
+    #academics div[style*="border-bottom"]:nth-child(2) { background: linear-gradient(90deg, #6a11cb, #2575fc) !important; }
+    #academics div[style*="border-bottom"]:nth-child(3) { background: linear-gradient(90deg, #11998e, #38ef7d) !important; }
+    #academics div[style*="padding:18px"]:last-child { background: linear-gradient(90deg, #f12711, #f5af19) !important; border-radius:12px !important; color:#fff !important; }
+</style>
+
+<script type="module">
+    import { getDatabase, ref, set, onValue, remove } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
+    const db = getDatabase();
+
+    // --- 1. UPDATE APPLICATION SECTION ---
+    const applyView = document.getElementById('admission').querySelector('.mk-card');
+    applyView.innerHTML = `
+        <h3>Online Registration</h3>
+        <input type="text" id="wa_name" class="mk-input" placeholder="Cadet's Name">
+        <input type="text" id="wa_fname" class="mk-input" placeholder="Father's Name">
+        <input type="text" id="wa_class" class="mk-input" placeholder="Class (e.g. 6th, 9th)">
+        <input type="text" id="wa_from" class="mk-input" placeholder="From (Village/City)">
+        <input type="number" id="wa_phone" class="mk-input" placeholder="WhatsApp Contact">
+        <button class="big-btn" onclick="submitRegistration()">SUBMIT TO WHATSAPP</button>
+    `;
+
+    window.submitRegistration = () => {
+        const n = document.getElementById('wa_name').value;
+        const fn = document.getElementById('wa_fname').value;
+        const cl = document.getElementById('wa_class').value;
+        const fr = document.getElementById('wa_from').value;
+        const ph = document.getElementById('wa_phone').value;
+        if(!n || !ph) { alert("Please fill Name and Contact."); return; }
+        const msg = `*NEW ADMISSION ENQUIRY*%0A*Name:* ${n}%0A*Father:* ${fn}%0A*Class:* ${cl}%0A*From:* ${fr}%0A*Contact:* ${ph}`;
+        window.open(`https://wa.me/918810285636?text=${msg}`);
+    }
+</script>
+<style>
+    /* 1. ACADEMICS SUB-HEADING COLORS */
+    .acad-point { 
+        color: #27ae60 !important; 
+        font-weight: 800 !important; 
+        font-size: 14px; 
+        display: inline-block;
+        background: rgba(46, 204, 113, 0.05);
+        padding: 2px 8px;
+        border-radius: 4px;
+        margin-bottom: 5px;
+    }
+
+    /* 2. ADMIN PANEL PHOTO PICKER UI */
+    .photo-upload-zone {
+        border: 2px dashed var(--p);
+        padding: 20px;
+        text-align: center;
+        border-radius: 15px;
+        cursor: pointer;
+        background: #fdfdfd;
+        margin-bottom: 15px;
+        transition: 0.3s;
+    }
+    .photo-upload-zone:hover { background: #f0fdf4; }
+    #admin_photo_prev { 
+        width: 80px; height: 80px; border-radius: 50%; 
+        object-fit: cover; display: none; margin: 10px auto; 
+        border: 3px solid var(--p); 
+    }
+
+    /* 3. STUDENT LIST IN ADMIN */
+    .admin-stu-card {
+        display: flex; justify-content: space-between; align-items: center;
+        padding: 12px; background: #fff; border-radius: 12px; margin-bottom: 8px;
+        border: 1px solid #eee; box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+    }
+    .admin-stu-info { display: flex; align-items: center; gap: 12px; }
+    .admin-stu-info img { width: 45px; height: 45px; border-radius: 50%; object-fit: cover; border: 2px solid var(--p); }
+</style>
+
+<script type="module">
+    import { getDatabase, ref, set, push, onValue, remove, update } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
+    const db = getDatabase();
+
+    // --- A. DYNAMIC UI FIX (Headings & Points) ---
+    window.addEventListener('load', () => {
+        // Academics section ke points ko green karna
+        document.querySelectorAll('#academics p b').forEach(el => {
+            el.classList.add('acad-point');
+        });
+        // Headings ko Orange karna
+        document.querySelectorAll('#academics h3').forEach(el => {
+            el.style.color = "#FF8C00";
+        });
+    });
+
+    // --- B. IMAGE COMPRESSOR (Database Safety) ---
+    const compressImage = (file) => {
+        return new Promise((resolve) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = (e) => {
+                const img = new Image();
+                img.src = e.target.result;
+                img.onload = () => {
+                    const canvas = document.createElement('canvas');
+                    const width = 400; // Optimal Size
+                    const scale = width / img.width;
+                    canvas.width = width;
+                    canvas.height = img.height * scale;
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                    resolve(canvas.toDataURL('image/jpeg', 0.7));
+                };
+            };
+        });
+    };
+
+    // --- C. ADMIN UI UPGRADE (Injecting New Features) ---
+    const adminPanel = document.getElementById('a_console');
+    if(adminPanel) {
+        // 1. Photo Upload logic for Gallery (Replaces URL input)
+        const galSection = adminPanel.querySelector('div:nth-child(4)');
+        galSection.innerHTML = `
+            <h3>4. Campus Gallery (Direct Upload)</h3>
+            <button class="big-btn" style="background:#3498db; color:#fff;" onclick="triggerGallery()">+ SELECT & UPLOAD PHOTO</button>
+            <input type="file" id="gal_inp" style="display:none;" accept="image/*">
+        `;
+
+        // 2. Photo Upload for Student (Inside Sync Section)
+        const syncSection = adminPanel.querySelector('div:nth-child(3)');
+        syncSection.innerHTML = `
+            <h3>3. Sync Cadet Profile</h3>
+            <div class="photo-upload-zone" onclick="document.getElementById('stu_img_inp').click()">
+                <i class="fa fa-camera" style="font-size:24px; color:var(--p);"></i><br>
+                <span id="stu_status" style="font-size:11px; font-weight:800;">CLICK TO UPLOAD PHOTO</span>
+                <img id="admin_photo_prev">
+            </div>
+            <input type="file" id="stu_img_inp" style="display:none;" accept="image/*">
+            <input id="is_id" class="mk-input" placeholder="Cadet ID (MK-101)">
+            <input id="is_name" class="mk-input" placeholder="Full Name">
+            <input id="is_class" class="mk-input" placeholder="Class/Wing">
+            <input id="is_paid" class="mk-input" placeholder="Paid Amount">
+            <input id="is_total" class="mk-input" placeholder="Total Fees">
+            <button class="big-btn" onclick="syncCadetData()">SYNC TO CLOUD</button>
+        `;
+
+        // 3. Adding Master List Section
+        const listHTML = `
+            <div class="mk-card">
+                <h3>5. Master Cadet List (Edit/Delete)</h3>
+                <input type="text" id="admin_stu_search" class="mk-input" placeholder="Search by Name/ID..." oninput="filterAdminList()">
+                <div id="admin_master_list" style="max-height:400px; overflow-y:auto;"></div>
+            </div>
+        `;
+        adminPanel.insertAdjacentHTML('beforeend', listHTML);
+    }
+
+    // --- D. LOGIC FUNCTIONS ---
+
+    // 1. Gallery Upload
+    window.triggerGallery = () => {
+        const inp = document.getElementById('gal_inp');
+        inp.onchange = async (e) => {
+            if(e.target.files[0]) {
+                const img = await compressImage(e.target.files[0]);
+                push(ref(db, 'gallery'), { url: img }).then(() => alert("Gallery Photo Uploaded!"));
+            }
+        };
+        inp.click();
+    };
+
+    // 2. Student Photo Preview
+    let activeStuPhoto = null;
+    document.getElementById('stu_img_inp').onchange = async (e) => {
+        if(e.target.files[0]) {
+            activeStuPhoto = await compressImage(e.target.files[0]);
+            const prev = document.getElementById('admin_photo_prev');
+            prev.src = activeStuPhoto; prev.style.display = "block";
+            document.getElementById('stu_status').innerText = "PHOTO READY ✅";
+        }
+    };
+
+    // 3. Sync Cadet Data (Save/Update)
+    window.syncCadetData = () => {
+        const id = document.getElementById('is_id').value.toUpperCase().trim();
+        const nm = document.getElementById('is_name').value;
+        if(!id || !nm) return alert("ID and Name are mandatory!");
+
+        const cadet = {
+            id, name: nm, 
+            class: document.getElementById('is_class').value,
+            paid: document.getElementById('is_paid').value,
+            total: document.getElementById('is_total').value
+        };
+        if(activeStuPhoto) cadet.photo = activeStuPhoto;
+
+        update(ref(db, 'students/' + id), cadet).then(() => {
+            alert("Cadet Synced Successfully!");
+            location.reload(); // Refresh to clean everything
+        });
+    };
+
+    // 4. Realtime List for Admin
+    onValue(ref(db, 'students'), (snap) => {
+        const box = document.getElementById('admin_master_list');
+        const data = snap.val();
+        box.innerHTML = "";
+        if(data) {
+            Object.keys(data).forEach(id => {
+                const s = data[id];
+                box.innerHTML += `
+                    <div class="admin-stu-card" onclick="editCadet('${id}')">
+                        <div class="admin-stu-info">
+                            <img src="${s.photo || 'https://via.placeholder.com/100'}">
+                            <div>
+                                <b style="font-size:14px;">${s.name}</b><br>
+                                <small style="color:var(--p); font-weight:700;">ID: ${id}</small>
+                            </div>
+                        </div>
+                        <button onclick="event.stopPropagation(); deleteCadet('${id}')" style="background:none; border:none; color:red; font-size:18px;"><i class="fa fa-trash-can"></i></button>
+                    </div>
+                `;
+            });
+        }
+    });
+
+    window.editCadet = (id) => {
+        onValue(ref(db, 'students/' + id), (s) => {
+            const d = s.val();
+            document.getElementById('is_id').value = d.id;
+            document.getElementById('is_name').value = d.name;
+            document.getElementById('is_class').value = d.class;
+            document.getElementById('is_paid').value = d.paid;
+            document.getElementById('is_total').value = d.total;
+            window.scrollTo({top: 0, behavior: 'smooth'});
+            alert("Data Loaded! Make changes and click Sync.");
+        }, {onlyOnce: true});
+    };
+
+    window.deleteCadet = (id) => { if(confirm("Are you sure to delete this Cadet?")) remove(ref(db, 'students/' + id)); };
+
+    window.filterAdminList = () => {
+        const q = document.getElementById('admin_stu_search').value.toLowerCase();
+        document.querySelectorAll('.admin-stu-card').forEach(card => {
+            card.style.display = card.innerText.toLowerCase().includes(q) ? 'flex' : 'none';
+        });
+    };
+</script>
+<style>
+    /* 1. IMAGE ZOOM (LIGHTBOX) STYLING */
+    #img_overlay {
+        position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+        background: rgba(0,0,0,0.92); z-index: 20000;
+        display: none; align-items: center; justify-content: center;
+        backdrop-filter: blur(8px);
+    }
+    #img_zoom_view { 
+        max-width: 90%; max-height: 80%; border-radius: 15px; 
+        border: 4px solid var(--p); transform: scale(0.6); 
+        transition: 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28); 
+    }
+    #img_overlay.active #img_zoom_view { transform: scale(1); }
+    .close-zoom { 
+        position: absolute; top: 20px; right: 20px; 
+        color: #fff; font-size: 50px; cursor: pointer; 
+        font-family: Arial, sans-serif; font-weight: bold;
+    }
+
+    /* 2. ACADEMICS HIGHLIGHT HEADLINES COLOR */
+    .head-highlight { 
+        color: #FF8C00 !important; /* Premium Saffron Orange */
+        font-weight: 900 !important;
+        font-family: 'Montserrat', sans-serif !important;
+        text-transform: uppercase;
+    }
+</style>
+
+<div id="img_overlay" onclick="closeZoom()">
+    <span class="close-zoom">&times;</span>
+    <img id="img_zoom_view" src="">
+</div>
+
+<script type="module">
+    // --- 1. IMAGE ZOOM LOGIC ---
+    window.openZoom = (src) => {
+        const ov = document.getElementById('img_overlay');
+        const img = document.getElementById('img_zoom_view');
+        img.src = src;
+        ov.style.display = 'flex';
+        // Confetti effect remove kardiya (Professional look)
+        setTimeout(() => ov.classList.add('active'), 10);
+    };
+    
+    window.closeZoom = () => {
+        const ov = document.getElementById('img_overlay');
+        ov.classList.remove('active');
+        setTimeout(() => ov.style.display = 'none', 300);
+    };
+
+    // Automatically detect gallery image click and attach zoom
+    window.addEventListener('click', (e) => {
+        if(e.target.tagName === 'IMG' && e.target.closest('#g_wall')) {
+            openZoom(e.target.src);
+        }
+    });
+
+    // --- 2. ACADEMICS HIGHLIGHT HEADLINES ---
+    const applyAcademicColors = () => {
+        const section = document.getElementById('academics');
+        let html = section.innerHTML;
+        const headlines = [
+            "Advanced Sainik Curriculum",
+            "Daily Mock Testing",
+            "Doubt Classes",
+            "Digital Library"
+        ];
+        
+        headlines.forEach(h => {
+            const reg = new RegExp(h, "g");
+            html = html.replace(reg, `<span class="head-highlight">${h}</span>`);
+        });
+        section.innerHTML = html;
+    };
+    applyAcademicColors();
+
+    console.log("MK Cloud - Pure Update v3.0: Zoom & Academics Highlights Loaded.");
+</script>
+<style>
+    /* 1. WELCOME STYLE HEADER (160px Size) */
+    header {
+        position: fixed; top: 0; left: 0; width: 100%; 
+        height: 160px !important; /* Fixed Size */
+        z-index: 10000; display: flex; flex-direction: column;
+        border-bottom: 4px solid var(--p, #2ECC71) !important;
+        background: #000; overflow: hidden;
+    }
+
+    .brand-zone { 
+        flex: 1; position: relative;
+        display: flex; align-items: center; justify-content: center;
+        /* Welcome Hero-box wali Image */
+        background: url('https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=1000') no-repeat center;
+        background-size: cover;
+    }
+
+    /* Dark Parda (Overlay) */
+    .brand-zone::before {
+        content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+        background: rgba(0, 0, 0, 0.65); z-index: 1;
+    }
+
+    /* Glass Box Text Styling */
+    .brand-zone h1 {
+        position: relative; z-index: 2;
+        font-family: 'Montserrat', sans-serif;
+        font-size: clamp(14px, 5vw, 22px);
+        color: #FFFFFF !important; 
+        text-transform: uppercase; font-weight: 900; letter-spacing: 2px;
+        padding: 10px 20px;
+        border: 2.5px solid var(--p, #2ECC71) !important; /* Boundary theme color */
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        border-radius: 12px;
+        text-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        white-space: nowrap;
+    }
+
+    /* 2. ACADEMICS COLORS (BLUE & ORANGE) */
+    #academics h3 { 
+        color: #0084FF !important; /* Premium Blue */
+        font-weight: 900 !important; 
+        border-left: 6px solid #0084FF; padding-left: 12px;
+    }
+    #academics p b, #academics span b { 
+        color: #FF8C00 !important; /* Saffron Orange */
+        font-weight: 800 !important;
+    }
+
+    /* 3. SMART ROUTINE TEXT COLOR */
+    #routine_container td {
+        padding: 15px; font-weight: 700; font-size: 13px;
+        transition: 0.3s;
+    }
+    #routine_container td:first-child {
+        color: var(--p, #2ECC71) !important; /* Time hamesha Theme Color */
+        font-weight: 900;
+    }
+
+    /* 4. CONTACT HUB (IN NOTICE TAB) */
+    .c-hub-card {
+        background: var(--card, #f9f9f9);
+        border-radius: 20px; padding: 25px;
+        margin-top: 30px; border: 1.5px solid var(--p, #2ECC71);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    }
+    .c-item {
+        display: flex; align-items: center; gap: 15px;
+        padding: 15px; margin-bottom: 12px; border-radius: 12px;
+        background: rgba(0,0,0,0.03); cursor: pointer;
+        transition: 0.3s; border: 1px solid transparent;
+    }
+    .c-item:hover { transform: scale(1.02); border-color: var(--p); }
+    .c-item i { font-size: 22px; color: var(--p); width: 30px; text-align: center; }
+    .c-item div b { display: block; font-size: 14px; color: var(--p); text-transform: uppercase; }
+    .c-item div p { font-size: 13px; font-weight: 600; color: var(--text-main); margin: 0; }
+</style>
+
+<script>
+    // --- SMART COLOR DETECTOR ---
+    function syncSmartColors() {
+        const isDark = document.body.classList.contains('dark-mode') || 
+                       window.getComputedStyle(document.body).backgroundColor === "rgb(0, 0, 0)";
+        
+        // Routine Text Color Logic
+        const routineCells = document.querySelectorAll('#routine_container td:last-child');
+        routineCells.forEach(td => {
+            td.style.color = isDark ? "#FFFFFF" : "#000000";
+        });
+    }
+
+    // --- CONTACT HUB INJECTOR (NOTICE TAB) ---
+    function injectContactHub() {
+        const noticeTab = document.getElementById('notice_view');
+        if(noticeTab && !document.getElementById('mk_c_hub')) {
+            const hub = document.createElement('div');
+            hub.id = "mk_c_hub";
+            hub.className = "c-hub-card";
+            hub.innerHTML = `
+                <h3 style="color:#0084FF; font-weight:900; margin-bottom:20px;">
+                    <i class="fa fa-id-card"></i> ACADEMY HELPLINE
+                </h3>
+                
+                <div class="c-item" onclick="window.open('https://wa.me/918810285636')">
+                    <i class="fab fa-whatsapp"></i>
+                    <div><b>WhatsApp Contact</b><p>8810285636</p></div>
+                </div>
+
+                <div class="c-item" onclick="window.location.href='mailto:mkclasses1234@gmail.com'">
+                    <i class="fa fa-envelope"></i>
+                    <div><b>Official Email</b><p>mkclasses1234@gmail.com</p></div>
+                </div>
+
+                <div class="c-item" onclick="window.open('https://www.google.com/maps/search/?api=1&query=AS+Kharab+College+Kasni+Jhajjar')">
+                    <i class="fa fa-map-marker-alt"></i>
+                    <div><b>Academy Location</b><p>AS Kharab College Kasni Jhajjar</p></div>
+                </div>
+            `;
+            noticeTab.appendChild(hub);
+        }
+    }
+
+    // Sync Everything
+    setInterval(() => {
+        syncSmartColors();
+        injectContactHub();
+    }, 1000);
+</script>
+<style>
+    /* Theme Definitions */
+    body.emerald-mode { --p: #2ECC71; --bg: #FFFFFF; --card: #F9FBFC; --text-main: #1E293B; }
+    body.dark-green-mode { --p: #2ECC71; --bg: #000000; --card: #111111; --text-main: #FFFFFF; }
+    body.gold-luxury-mode { --p: #D4AF37; --bg: #000000; --card: #111111; --text-main: #FFFFFF; }
+    body.ocean-blue-mode { --p: #0084FF; --bg: #FFFFFF; --card: #F0F7FF; --text-main: #1E293B; }
+    body.royal-purple-mode { --p: #9B59B6; --bg: #000000; --card: #0F0F0F; --text-main: #FFFFFF; }
+
+    /* Admin Panel Theme Buttons Styling */
+    .theme-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        gap: 10px;
+        margin-top: 15px;
+    }
+    .t-btn {
+        padding: 12px; border: none; border-radius: 10px; 
+        font-weight: 900; font-size: 10px; cursor: pointer;
+        text-transform: uppercase; transition: 0.3s;
+        color: #fff; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    .t-btn:active { transform: scale(0.9); }
+</style>
+
+<script type="module">
+    import { getDatabase, ref, set, onValue } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
+    const db = getDatabase();
+
+    // 1. Theme ko Cloud (Firebase) par save karne ka function
+    window.db_setTheme = (mode) => {
+        set(ref(db, 'system_theme'), { mode: mode })
+        .then(() => alert("Theme Updated Globally! 🎖️"));
+    };
+
+    // 2. Realtime Theme Observer (Sabhi users ke liye ek sath badlega)
+    onValue(ref(db, 'system_theme'), (snapshot) => {
+        const data = snapshot.val();
+        if(data && data.mode) {
+            const body = document.body;
+            // Purani saari themes remove karo
+            body.classList.remove('emerald-mode', 'dark-green-mode', 'gold-luxury-mode', 'ocean-blue-mode', 'royal-purple-mode');
+            // Nayi theme apply karo
+            body.classList.add(data.mode.toLowerCase() + '-mode');
+            
+            // Background color fix for Smart Routine
+            if(data.mode.includes('DARK') || data.mode.includes('GOLD') || data.mode.includes('PURPLE')) {
+                body.style.backgroundColor = "#000000";
+            } else {
+                body.style.backgroundColor = "#FFFFFF";
+            }
+        }
+    });
+
+    // 3. Admin Panel mein Buttons Inject karna
+    const adminConsole = document.getElementById('a_console');
+    if(adminConsole) {
+        const themeSection = `
+            <div class="mk-card" style="border-top: 5px solid var(--p);">
+                <h3><i class="fa fa-palette"></i> 5. GLOBAL SYSTEM THEMES</h3>
+                <div class="theme-grid">
+                    <button class="t-btn" style="background:#2ECC71;" onclick="db_setTheme('EMERALD')">Emerald Light</button>
+                    <button class="t-btn" style="background:#1B5E20;" onclick="db_setTheme('DARK-GREEN')">Forest Dark</button>
+                    <button class="t-btn" style="background:#D4AF37; color:#000;" onclick="db_setTheme('GOLD-LUXURY')">Gold Luxury</button>
+                    <button class="t-btn" style="background:#0084FF;" onclick="db_setTheme('OCEAN-BLUE')">Ocean Blue</button>
+                    <button class="t-btn" style="background:#8E44AD;" onclick="db_setTheme('ROYAL-PURPLE')">Royal Dark</button>
+                </div>
+            </div>
+        `;
+        adminConsole.insertAdjacentHTML('beforeend', themeSection);
+    }
+</script>
+<style>
+    /* Routine Layout Styling */
+    .rt-container {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        width: 100%;
+    }
+    .rt-item {
+        display: flex;
+        align-items: center;
+        background: rgba(128, 128, 128, 0.08); /* Light grey tint for rows */
+        border-radius: 12px;
+        overflow: hidden;
+        border-left: 5px solid var(--p);
+        box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+        transition: 0.3s ease;
+    }
+    .rt-time-box {
+        padding: 15px;
+        color: var(--p);
+        font-weight: 900;
+        font-size: 11px;
+        min-width: 95px;
+        text-align: center;
+        background: rgba(0, 0, 0, 0.04);
+        border-right: 1px solid rgba(0,0,0,0.05);
+    }
+    .rt-act-box {
+        padding: 15px;
+        font-weight: 700;
+        font-size: 13px;
+        flex: 1;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    /* Mobile optimization */
+    @media (max-width: 400px) {
+        .rt-time-box { min-width: 85px; font-size: 10px; }
+        .rt-act-box { font-size: 12px; }
+    }
+</style>
+
+<script>
+    function loadRoutine() {
+        const routineData = [
+            { t: "05:00 AM", act: "Wake Up Call & Morning Wash", icon: "⏰" },
+            { t: "05:30 AM", act: "Physical Training / Ground Drill", icon: "🏃‍♂️" },
+            { t: "07:15 AM", act: "Personal Cleanliness / Bath", icon: "🚿" },
+            { t: "08:00 AM", act: "Breakfast (High Protein Mess)", icon: "🍳" },
+            { t: "08:45 AM", act: "Academy Morning Assembly", icon: "📢" },
+            { t: "09:00 AM", act: "Academic Session I (Core Subject)", icon: "📚" },
+            { t: "01:30 PM", act: "Lunch Break & Healthy Meal", icon: "🍱" },
+            { t: "02:15 PM", act: "Mandatory Rest Period", icon: "😴" },
+            { t: "03:45 PM", act: "Academic Session II (Mock Test)", icon: "✍️" },
+            { t: "06:00 PM", act: "Evening Snacks & Tea", icon: "☕" },
+            { t: "06:30 PM", act: "Evening Sports Drill", icon: "⚽" },
+            { t: "08:00 PM", act: "Dinner Time", icon: "🍽️" },
+            { t: "09:00 PM", act: "Self Study & Doubt Clearance", icon: "📖" },
+            { t: "10:30 PM", act: "Lights Out (Mandatory Rest)", icon: "🌙" }
+        ];
+
+        // Theme Detection (Contrast Logic)
+        const bodyBg = window.getComputedStyle(document.body).backgroundColor;
+        const isDark = bodyBg === "rgb(0, 0, 0)" || 
+                       document.body.classList.contains('dark-green-mode') || 
+                       document.body.classList.contains('gold-luxury-mode') || 
+                       document.body.classList.contains('royal-purple-mode');
+
+        const textColor = isDark ? "#FFFFFF" : "#111111"; // White for dark, Deep Black for light
+
+        let html = '<div class="rt-container">';
+        routineData.forEach(r => {
+            html += `
+                <div class="rt-item">
+                    <div class="rt-time-box">${r.t}</div>
+                    <div class="rt-act-box" style="color: ${textColor} !important;">
+                        <span>${r.icon}</span> ${r.act}
+                    </div>
+                </div>
+            `;
+        });
+        html += '</div>';
+
+        const container = document.getElementById('routine_container');
+        if (container) {
+            container.innerHTML = html;
+        }
+    }
+
+    // Har 1 second mein color sync karega bina routine refresh kiye
+    function syncRoutineVisibility() {
+        const bodyBg = window.getComputedStyle(document.body).backgroundColor;
+        const isDark = bodyBg === "rgb(0, 0, 0)" || 
+                       document.body.classList.contains('dark-green-mode') || 
+                       document.body.classList.contains('gold-luxury-mode');
+        
+        const acts = document.querySelectorAll('.rt-act-box');
+        acts.forEach(el => {
+            el.style.color = isDark ? "#FFFFFF" : "#111111";
+        });
+    }
+
+    // Auto-Run
+    window.addEventListener('DOMContentLoaded', loadRoutine);
+    setInterval(syncRoutineVisibility, 1000);
+
+    // Nav switch support
+    const oldNav = window.nav;
+    window.nav = function(id, btn) {
+        if(typeof oldNav === 'function') oldNav(id, btn);
+        if(id === 'routine') setTimeout(loadRoutine, 50);
+    }
+</script>
+
+</body>
+</html>
